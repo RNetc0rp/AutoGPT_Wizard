@@ -55,8 +55,12 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 sudo apt update
 sudo apt install docker-ce -y
-sudo systemctl start docker
-sudo systemctl enable docker
+
+# Systemctl disabled in Ubuntu for WSL, you need to use service instead, uncomment following code for if running os on bare metal or in VM
+## Revision by RNetCorp
+#sudo systemctl start docker
+#sudo systemctl enable docker
+service docker start
 sudo usermod -aG docker $USER
 
 # Install Google Chrome
